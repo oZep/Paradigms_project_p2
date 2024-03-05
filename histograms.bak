@@ -10,24 +10,15 @@
     (save colorHist)
     ; return coloredHist
   )
+
+
+(define (ColorHisto pixelImage)
+  ; read the file that is opened (recursive)
+  ; make a vector of the first interger that occurs in the first list
+  ; set-vector ____
+  ; add the rest of the values into a vector
+  ; return the vector
   )
-
-; ___________________ make histogram __________________________
-
-  (define (ColorHisto pixelList) ;Shack
-  ; creates a color histogram from a list of pixel values
-  
-  ; helper: makes the vector and at
-  (define (count-colors colors)
-    (let loop ((colors colors) (counts (make-vector 512 0)))
-      (cond
-        ((null? colors) counts)
-        (else
-         (let ((color (car colors)))
-           (vector-set! counts color (+ (vector-ref counts color) 1))
-           (loop (cdr colors) counts))))))
-
-  (count-colors pixelList))
 
 
   
