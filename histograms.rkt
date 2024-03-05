@@ -83,7 +83,12 @@
 
 ; ___________________ done comparing the values _______________________
 
-
+; ___________________ find similarities _______________________
+; takes the query histogram and the file directory
+; call (calls quertHist file) on each file
+; get the returned value and add to a vectors list
+; at the end of the program
+; call ((print5min ouput 5)
 
 (define (getSim queryHist dir)
   ; Recursively get each file in dir
