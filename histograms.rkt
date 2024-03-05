@@ -20,11 +20,24 @@
   ; return the vector
   )
 
+; ___________________ saving the values ________________________
 
-
-(define (save filename) ; Joey 
+(define (save filename vector) ; Joey 
   ; take the vector and each element and write it into a new txt file
+    (define (write-elements elements out)
+    (cond ((null? elements) #t)
+          (else (begin
+                  (display (car elements) out)
+                  (newline out)
+                  (write-elements (cdr elements) out)))))
+  
+  (let ((out (open-output-file filename)))
+    (write-elements vector out)
+    (close-output-port out)
+    (display "File created successfully.")))
   )
+
+; ___________________ done saving the values ________________________
 
 
 (define (compare hist1 hist2) ; Joey 
