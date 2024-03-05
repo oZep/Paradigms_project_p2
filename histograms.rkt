@@ -20,6 +20,8 @@
   ; return the vector
   )
 
+
+  
 ; ___________________ saving the values ________________________
 
 ; takes a filename (what you want to call the file) and a vector (what you want saved to the file
@@ -69,7 +71,7 @@
 
   )
 
- (define (calls quertHist file)
+ (define (calls quertHist file) ; Joey
    ; call color histogram and get the histogram for the file
    ; (define histfile (ColorHisto file))
    ; call compare
