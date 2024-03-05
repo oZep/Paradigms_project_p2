@@ -1,18 +1,31 @@
 #lang racket
 
 
-; Python file already reduces the histogram to 3 bit
+; ___________________ Grab ColorImage Histogram __________________________
           
+; takes in the filename and returns the histogram which is a vector list
+
 (define (ColorImage filename)
   (begin 
     (define pixelImage (open-input-file filename))
     (define coloredHist (ColorHisto pixelImage))
     (save colorHist)
-    ; return coloredHist
+    (if (> coloredHist 0)
+        coloredHist
+        0)
   )
   )
-
+; ___________________ Done Grabbing ColorImage Histogram __________________________
 ; ___________________ make histogram __________________________
+
+  ; creates a color histogram from a list of pixel values
+
+  ; read the file that is opened (recursive)
+  ; make a vector of the first interger that occurs in the first list
+  ; set-vector ____
+  ; add the rest of the values into a vector
+  ; return the vector
+
 
   (define (ColorHisto pixelList) ;Shack
   ; creates a color histogram from a list of pixel values
@@ -30,7 +43,7 @@
   (count-colors pixelList))
 
 
-  
+; ___________________ done make histogram __________________________
 ; ___________________ saving the values ________________________
 
 ; takes a filename (what you want to call the file) and a vector (what you want saved to the file
@@ -76,25 +89,23 @@
 
 (define (getSim queryHist dir) ; Joey 
   ; recursivly get each file in dir
+  
+
+  
   (calls queryHist file)
 
   )
 
- (define (calls quertHist file) ; Joey
+
+
    ; call color histogram and get the histogram for the file
    ; (define histfile (ColorHisto file))
    ; call compare
-   ; (compare queryHist histfile) ; get sum and send to 
-   ;  (ListTracter value)
-   ; '#() + (ListTracter value)
-   ;
-   ; after you are done loop
-   ; take the return value (vectors)
-   ; (print5min ouput)
+   ; (compare queryHist histfile) ; get sum and send back to calling function
+ (define (calls quertHist file) ; Joey
+   (define histfile (ColorHisto file))
+   (compare hist1 hist2)
    )
-
-
-
 
 
 ; ___________________ printing the values ________________________
@@ -138,16 +149,8 @@
 
 
 ; ___________________ done printing the values ________________________  
-
-
- (define (VectListTracker value)
-   ; has to be a vector and has to add value to it
-   ; and returns the vecotor
-   )
-
-
   
-  
+; ___________________ main function to call __________________________ 
 (define (similaritySearch queryHistogramFilename imageDatasetDirectory)
   ; This function should return the name of the 5 most similar images to the query image
   ; this is where we will do all of the function calls
