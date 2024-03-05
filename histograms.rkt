@@ -9,7 +9,7 @@
   (begin 
     (define pixelImage (open-input-file filename))
     (define coloredHist (ColorHisto pixelImage))
-    (save colorHist)
+    (save coloredHist)
     (if (> coloredHist 0)
         coloredHist
         0)
@@ -62,7 +62,7 @@
     (write-elements vector out)
     (close-output-port out)
     (display "File created successfully.")))
-  )
+  
 
 ; ___________________ done saving the values ________________________
 ; ___________________ comparing the values _______________________
@@ -131,7 +131,7 @@
            (display max-value)
            (newline)
            (print5min (remove-max vec max-index) (+ counter 1)))))) ; Recursive call with incremented counter
-    )
+    
 
 (define (find-max-index vec index max-index)
   (cond ((>= index (vector-length vec)) max-index)
@@ -159,7 +159,7 @@
           (define queryHist (ColorImage fileName)) ; define pixelImage (open-input-file
           ; compare things
           (getSim (queryHist imageDatasetDirectory))
-  )
+  )))
 
 
 
