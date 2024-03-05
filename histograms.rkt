@@ -85,17 +85,23 @@
 
 
 
+(define (getSim queryHist dir)
+  ; Recursively get each file in dir
+  (define output '())
 
+  ; Helper function to process each file
+  (define (recursive-process path)
+    (cond
+      ((file-exists? path)
+       (set! output (cons (calls queryHist path) output)))
+      ((directory-exists? path)
+       (for-each recursive-process (directory-list path)))))
 
-(define (getSim queryHist dir) ; Joey 
-  ; recursivly get each file in dir
+  ; Start processing from the specified directory
+  (recursive-process dir)
   
-
-  
-  (calls queryHist file)
-
-  )
-
+  ; Print the output
+  (print5min (list->vector (reverse output)) 5))
 
 
    ; call color histogram and get the histogram for the file
@@ -104,7 +110,7 @@
    ; (compare queryHist histfile) ; get sum and send back to calling function
  (define (calls quertHist file) ; Joey
    (define histfile (ColorHisto file))
-   (compare hist1 hist2)
+   (compare quertHist histfile)
    )
 
 
@@ -154,12 +160,17 @@
 (define (similaritySearch queryHistogramFilename imageDatasetDirectory)
   ; This function should return the name of the 5 most similar images to the query image
   ; this is where we will do all of the function calls
-   (if (file-exists? queryHistogramFilename)
-        (begin
-          (define queryHist (ColorImage fileName)) ; define pixelImage (open-input-file
-          ; compare things
-          (getSim (queryHist imageDatasetDirectory))
-  )))
+  
+  ; Define queryHist outside of the if block
+  (define queryHist (ColorImage queryHistogramFilename))
+  
+  ; Check if the file exists
+  (if (file-exists? queryHistogramFilename)
+      ; If it exists, compare things
+      (getSim queryHist imageDatasetDirectory)
+      ; If it doesn't exist, return 0
+      0))
+
 
 
 
