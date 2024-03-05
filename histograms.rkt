@@ -51,15 +51,45 @@
    ; (print5min ouput)
    )
 
-  (define (print5min vec) ; Joey 
+; ___________________ printing the values ________________________
+
+  
+  (define (print5min vec counter) ; Joey 
     ; recursively prints the 5 five outputs
     ; it find the largest value
     ; prints it's index (which indicates which image
     ; removes it from the vector list
     ; increases the counter by 1
     ; does this untill 5
+
+      (cond ((= counter 5) '()) ; Base case: Stop when counter reaches 5
+        (else
+         (let* ((max-index (find-max-index vec 0 0))
+                (max-value (vector-ref vec max-index)))
+           (display "Index: ")
+           (display max-index)
+           (display ", Value: ")
+           (display max-value)
+           (newline)
+           (print5min (remove-max vec max-index) (+ counter 1)))))) ; Recursive call with incremented counter
     )
-  
+
+(define (find-max-index vec index max-index)
+  (cond ((>= index (vector-length vec)) max-index)
+        ((> (vector-ref vec index) (vector-ref vec max-index))
+         (find-max-index vec (+ index 1) index))
+        (else (find-max-index vec (+ index 1) max-index))))
+
+(define (remove-max vec index)
+  (let ((len (vector-length vec)))
+    (let loop ((i 0) (j 0) (new-vec (make-vector (- len 1) 0)))
+      (cond ((= i len) new-vec)
+            ((= i index) (loop (+ i 1) j new-vec))
+            (else (vector-set! new-vec j (vector-ref vec i))
+                  (loop (+ i 1) (+ j 1) new-vec))))))
+
+
+; ___________________ done printing the values ________________________  
 
 
  (define (ListTracker value)
