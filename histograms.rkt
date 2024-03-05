@@ -22,6 +22,9 @@
 
 ; ___________________ saving the values ________________________
 
+; takes a filename (what you want to call the file) and a vector (what you want saved to the file
+; creates a file at the root directory with the contents of the vector
+  
 (define (save filename vector) ; Joey 
   ; take the vector and each element and write it into a new txt file
     (define (write-elements elements out)
@@ -38,11 +41,26 @@
   )
 
 ; ___________________ done saving the values ________________________
+; ___________________ comparing the values _______________________
 
+; takes two vector lists (histograms
+; preforms this calculation:  sum += Math.min(temp[i], temp2[i]); for each index in each vector (letrec lambda)
+; returns a double 
 
 (define (compare hist1 hist2) ; Joey 
   ;  sum += Math.min(temp[i], temp2[i]); for each index in each vector (letrec lambda)
-  )
+  (define (helper hist1 hist2 index sum)
+    (if (>= index (vector-length hist1))
+        sum
+        (let ((min-value (min (/ (vector-ref hist1 index) 512) (/ (vector-ref hist2 index) 512))))
+          (helper hist1 hist2 (+ index 1) (+ sum min-value)))))
+
+  (helper hist1 hist2 0 0))
+
+; ___________________ done comparing the values _______________________
+
+
+
 
 
 (define (getSim queryHist dir) ; Joey 
@@ -64,22 +82,28 @@
    ; (print5min ouput)
    )
 
+
+
+
+
 ; ___________________ printing the values ________________________
+
+; Takes a vector and a counter of how many maximum elements you want to print out
+    ; recursively prints the 5 five outputs
+    ; it find the largest value
+    ; prints it's index (which indicates which image is comparable)
+    ; removes it from the vector list
+    ; increases the counter by 1 to preserve the index (which relates back to the image location within the file directory)
+    ; does this until 5
 
   
   (define (print5min vec counter) ; Joey 
-    ; recursively prints the 5 five outputs
-    ; it find the largest value
-    ; prints it's index (which indicates which image
-    ; removes it from the vector list
-    ; increases the counter by 1
-    ; does this untill 5
 
       (cond ((= counter 5) '()) ; Base case: Stop when counter reaches 5
         (else
          (let* ((max-index (find-max-index vec 0 0))
                 (max-value (vector-ref vec max-index)))
-           (display "Index: ")
+           (display "Index and Image: ")
            (display max-index)
            (display ", Value: ")
            (display max-value)
@@ -105,7 +129,7 @@
 ; ___________________ done printing the values ________________________  
 
 
- (define (ListTracker value)
+ (define (VectListTracker value)
    ; has to be a vector and has to add value to it
    ; and returns the vecotor
    )
