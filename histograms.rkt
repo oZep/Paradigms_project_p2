@@ -118,7 +118,7 @@
    (compare quertHist histfile)
    )
 
-
+; ___________________ done find similarities _______________________
 ; ___________________ printing the values ________________________
 
 ; Takes a vector and a counter of how many maximum elements you want to print out
