@@ -26,6 +26,13 @@
   ; add the rest of the values into a vector
   ; return the vector
 
+(define (coverttolist filename)
+  ; convert file info in file to list
+  (ColorHisto pixellist)
+
+  )
+
+
 
   (define (ColorHisto pixelList) ;Shack
   ; creates a color histogram from a list of pixel values
@@ -167,7 +174,7 @@
   ; this is where we will do all of the function calls
   
   ; Define queryHist outside of the if block
-  (define queryHist (ColorImage queryHistogramFilename))
+  (define queryHist (coverttolist queryHistogramFilename))
   
   ; Check if the file exists
   (if (file-exists? queryHistogramFilename)
@@ -177,6 +184,6 @@
       0))
 
 
-
+;; (similaritySearch "imageDataset2_15_20/25.jpg.txt" "queryImages")
 
   
